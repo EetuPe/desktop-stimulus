@@ -32,8 +32,8 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
     alwaysOnTop: true,
-    focusable: true,
-    skipTaskbar: false,
+    focusable: false,
+    skipTaskbar: true,
     hasShadow: false,
     titleBarStyle: "hidden",
     backgroundColor: "#00000000", // Fully transparent background
