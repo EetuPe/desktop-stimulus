@@ -29,11 +29,14 @@ function createWindow() {
     titleBarStyle: "hidden",
   });
 
-  // Allow click-through on Windows
-  mainWindow.setIgnoreMouseEvents(true);
+  // Set click-through with forward option
+  mainWindow.setIgnoreMouseEvents(true, { forward: true });
 
-  // Platform-specific transparency handling
-  if (process.platform === "linux") {
+  // Platform-specific setup
+  if (process.platform === "win32") {
+    // Windows-specific transparency
+    mainWindow.setBackgroundColor("#00ffffff");
+  } else if (process.platform === "linux") {
     mainWindow.setBackgroundColor("#00000000");
 
     mainWindow.webContents.once("did-finish-load", () => {
