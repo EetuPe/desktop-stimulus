@@ -46,11 +46,21 @@ function createWindow() {
         // Add these lines for Windows
         document.body.style.webkitAppRegion = 'no-drag';
         document.documentElement.style.webkitAppRegion = 'no-drag';
-        // Ensure images are visible
+        // Enhanced image visibility fixes
         const images = document.getElementsByTagName('img');
         for(let img of images) {
           img.style.opacity = '1';
           img.style.visibility = 'visible';
+          img.style.position = 'relative';
+          img.style.zIndex = '9999';
+          img.style.pointerEvents = 'auto';
+        }
+        // Ensure container visibility
+        const root = document.getElementById('root');
+        if (root) {
+          root.style.opacity = '1';
+          root.style.visibility = 'visible';
+          root.style.background = 'transparent';
         }
       `);
     });
