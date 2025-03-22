@@ -27,6 +27,8 @@ function createWindow() {
     skipTaskbar: true,
     hasShadow: false,
     titleBarStyle: "hidden",
+    // Add Windows-specific settings
+    backgroundColor: "#00000000",
   });
 
   // Set click-through with forward option
@@ -34,8 +36,15 @@ function createWindow() {
 
   // Platform-specific setup
   if (process.platform === "win32") {
-    // Windows-specific transparency
-    mainWindow.setBackgroundColor("#00ffffff");
+    // Windows needs these specific settings
+    mainWindow.setBackgroundColor("#00000000");
+    mainWindow.webContents.once("did-finish-load", () => {
+      mainWindow.webContents.executeJavaScript(`
+        document.body.style.background = 'transparent';
+        document.documentElement.style.background = 'transparent';
+        document.body.style.backgroundColor = 'transparent';
+      `);
+    });
   } else if (process.platform === "linux") {
     mainWindow.setBackgroundColor("#00000000");
 
