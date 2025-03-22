@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, screen } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -11,9 +11,15 @@ const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
 let mainWindow;
 
 function createWindow() {
+  // Get primary display dimensions
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width, height } = primaryDisplay.workAreaSize;
+
   mainWindow = new BrowserWindow({
-    width: 1920,
-    height: 1080,
+    width: width,
+    height: height,
+    x: 0,
+    y: 0,
     transparent: true,
     frame: false,
     webPreferences: {
@@ -27,7 +33,6 @@ function createWindow() {
     skipTaskbar: true,
     hasShadow: false,
     titleBarStyle: "hidden",
-    // Add Windows-specific settings
     backgroundColor: "#00000000",
   });
 
@@ -46,7 +51,7 @@ function createWindow() {
         // Add these lines for Windows
         document.body.style.webkitAppRegion = 'no-drag';
         document.documentElement.style.webkitAppRegion = 'no-drag';
-        // Enhanced image visibility fixes
+        // Enhanced image visibility fixes for Windows 11
         const images = document.getElementsByTagName('img');
         for(let img of images) {
           img.style.opacity = '1';
@@ -54,6 +59,9 @@ function createWindow() {
           img.style.position = 'relative';
           img.style.zIndex = '9999';
           img.style.pointerEvents = 'auto';
+          img.style.backfaceVisibility = 'visible';
+          img.style.transform = 'translateZ(0)';
+          img.style.webkitTransform = 'translateZ(0)';
         }
         // Ensure container visibility
         const root = document.getElementById('root');
@@ -61,6 +69,9 @@ function createWindow() {
           root.style.opacity = '1';
           root.style.visibility = 'visible';
           root.style.background = 'transparent';
+          root.style.maxWidth = '100vw';
+          root.style.margin = '0';
+          root.style.padding = '0';
         }
       `);
     });
