@@ -43,6 +43,15 @@ function createWindow() {
         document.body.style.background = 'transparent';
         document.documentElement.style.background = 'transparent';
         document.body.style.backgroundColor = 'transparent';
+        // Add these lines for Windows
+        document.body.style.webkitAppRegion = 'no-drag';
+        document.documentElement.style.webkitAppRegion = 'no-drag';
+        // Ensure images are visible
+        const images = document.getElementsByTagName('img');
+        for(let img of images) {
+          img.style.opacity = '1';
+          img.style.visibility = 'visible';
+        }
       `);
     });
   } else if (process.platform === "linux") {
