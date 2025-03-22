@@ -34,7 +34,8 @@
     "linux": {
       "target": [
         "AppImage",
-        "deb"
+        "deb",
+        "rpm"
       ],
       "category": "Game",
       "icon": "src/assets/goose.png"
