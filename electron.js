@@ -23,7 +23,7 @@ function createWindow() {
     height: height,
     x: 0,
     y: 0,
-    transparent: false, // Disable transparency for debugging
+    transparent: true,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
@@ -34,9 +34,9 @@ function createWindow() {
     alwaysOnTop: true,
     focusable: true,
     skipTaskbar: false,
-    hasShadow: true,
+    hasShadow: false,
     titleBarStyle: "hidden",
-    backgroundColor: "#000000", // Set a solid background color
+    backgroundColor: "#00000000",
   });
 
   // Set click-through with forward option
