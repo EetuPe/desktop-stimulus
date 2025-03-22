@@ -27,7 +27,8 @@
     },
     "files": [
       "dist/**/*",
-      "electron.js"
+      "electron.js",
+      "src/assets/goose.png"
     ],
     "asar": true,
     "linux": {

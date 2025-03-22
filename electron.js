@@ -8,6 +8,9 @@ const __dirname = path.dirname(__filename);
 // Replace electron-is-dev with direct check
 const isDev = process.env.NODE_ENV === "development" || !app.isPackaged;
 
+app.commandLine.appendSwitch("enable-transparent-visuals");
+app.commandLine.appendSwitch("disable-gpu-sandbox");
+
 let mainWindow;
 
 function createWindow() {
@@ -48,12 +51,12 @@ function createWindow() {
         document.body.style.background = 'transparent';
         document.documentElement.style.background = 'transparent';
         document.body.style.backgroundColor = 'transparent';
-        // Add these lines for Windows
         document.body.style.webkitAppRegion = 'no-drag';
         document.documentElement.style.webkitAppRegion = 'no-drag';
+
         // Enhanced image visibility fixes for Windows 11
         const images = document.getElementsByTagName('img');
-        for(let img of images) {
+        for (let img of images) {
           img.style.opacity = '1';
           img.style.visibility = 'visible';
           img.style.position = 'relative';
@@ -62,7 +65,9 @@ function createWindow() {
           img.style.backfaceVisibility = 'visible';
           img.style.transform = 'translateZ(0)';
           img.style.webkitTransform = 'translateZ(0)';
+          img.style.filter = 'none'; // Ensure no unwanted filters are applied
         }
+
         // Ensure container visibility
         const root = document.getElementById('root');
         if (root) {
