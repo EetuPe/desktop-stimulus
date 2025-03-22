@@ -30,7 +30,7 @@ body,
 }
 
 #root {
-  background-color: #000000 !important; /* Temporarily set to black */
+  background-color: transparent !important;
 }
 
 a {
